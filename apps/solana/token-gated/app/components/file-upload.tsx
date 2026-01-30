@@ -34,8 +34,7 @@ export function FileUpload() {
   const { storageAccountAddress, signAndSubmitTransaction } = useStorageAccount(
     {
       client: shelbyClient,
-      solanaAddress: wallet?.account.address.toString(),
-      signMessageFn: wallet?.signMessage,
+      wallet,
     }
   );
 
