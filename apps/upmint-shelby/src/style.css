@@ -1,5 +1,5 @@
 :root {
-  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+  font-family: "DM Sans", system-ui, -apple-system, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color: #0f172a;
@@ -125,7 +125,9 @@ a {
   color: white;
   cursor: pointer;
   font-weight: 500;
-  transition: transform 0.15s, box-shadow 0.2s;
+  transition:
+    transform 0.15s,
+    box-shadow 0.2s;
 }
 
 .cta-button:hover {
@@ -153,8 +155,8 @@ a {
   letter-spacing: 0.05em;
 }
 
-.form-row input[type='text'],
-.form-row input[type='number'] {
+.form-row input[type="text"],
+.form-row input[type="number"] {
   padding: 0.6rem 0.8rem;
   border-radius: 0.6rem;
   border: 1px solid rgba(148, 163, 184, 0.3);
@@ -178,10 +180,10 @@ a {
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
-  text-transform: none !important;
+  text-transform: none;
 }
 
-.checkbox-label input[type='checkbox'] {
+.checkbox-label input[type="checkbox"] {
   width: 1.1rem;
   height: 1.1rem;
   accent-color: #8b5cf6;
@@ -197,7 +199,9 @@ a {
   border-radius: 1rem;
   background: rgba(139, 92, 246, 0.05);
   cursor: pointer;
-  transition: border-color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
 }
 
 .upload-zone:hover {
@@ -282,7 +286,9 @@ a {
   font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
-  transition: transform 0.15s, opacity 0.15s;
+  transition:
+    transform 0.15s,
+    opacity 0.15s;
 }
 
 .nft-mint-btn:hover:not(:disabled) {
