@@ -308,10 +308,11 @@ export const App: React.FC = () => {
       console.error(err);
       const errMsg = err instanceof Error ? err.message : "";
       const msg = String(errMsg).toLowerCase();
+      // Only treat as missing-collection when Aptos reports the collection object is missing
       const noCollection =
         msg.includes("object does not exist") ||
-        msg.includes("not found") ||
-        msg.includes("collection");
+        msg.includes("collection_does_not_exist") ||
+        /collection.*(?:does not exist|not found)/.test(msg);
       setMintError(
         noCollection
           ? 'Collection not found. Click "Create Collection" first.'
