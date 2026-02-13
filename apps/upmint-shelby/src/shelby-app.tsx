@@ -59,6 +59,7 @@ export const App: React.FC = () => {
   const [collectionCreateTx, setCollectionCreateTx] = useState<string | null>(
     null,
   );
+  const [collectionAlreadyExists, setCollectionAlreadyExists] = useState(false);
   const [myNfts, setMyNfts] = useState<
     Array<{
       token_data_id: string;
@@ -213,6 +214,7 @@ export const App: React.FC = () => {
     const collName = collectionName.trim();
     if (!collName || !walletConnected || !signAndSubmitTransaction) return;
     setMintError(null);
+    setCollectionAlreadyExists(false);
     setCreatingCollection(true);
     try {
       const imageUri = "https://shelby.xyz";
@@ -242,6 +244,7 @@ export const App: React.FC = () => {
         .waitForTransaction({ transactionHash: createRes.hash })
         .catch(() => {});
       setMintError(null);
+      setCollectionAlreadyExists(false);
       setCollectionCreateTx(createRes.hash);
     } catch (err: unknown) {
       const raw =
@@ -257,6 +260,7 @@ export const App: React.FC = () => {
         msg.includes("already exists at");
       if (alreadyExists) {
         setMintError(null);
+        setCollectionAlreadyExists(true);
       } else {
         setMintError(
           err instanceof Error ? err.message : "Collection creation error",
@@ -623,9 +627,17 @@ export const App: React.FC = () => {
               )}
             </section>
 
-            {(mintError || lastMintTxHash || collectionCreateTx) && (
+            {(mintError ||
+              lastMintTxHash ||
+              collectionCreateTx ||
+              collectionAlreadyExists) && (
               <section className="card message-card">
                 {mintError && <p className="error">{mintError}</p>}
+                {collectionAlreadyExists && (
+                  <p className="success" style={{ marginBottom: "0.5rem" }}>
+                    Collection already exists. You can mint NFTs now.
+                  </p>
+                )}
                 {collectionCreateTx && (
                   <p className="success" style={{ marginBottom: "0.5rem" }}>
                     Collection created.{" "}
