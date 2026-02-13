@@ -260,6 +260,7 @@ export const App: React.FC = () => {
         msg.includes("already exists at");
       if (alreadyExists) {
         setMintError(null);
+        setCollectionCreateTx(null); // clear stale "Collection created" from previous run
         setCollectionAlreadyExists(true);
       } else {
         setMintError(
