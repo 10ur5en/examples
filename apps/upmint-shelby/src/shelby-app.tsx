@@ -307,6 +307,10 @@ export const App: React.FC = () => {
         },
       });
 
+      await shelbyClient.coordination.aptos.waitForTransaction({
+        transactionHash: mintTxn.hash,
+      });
+
       setLastMintTxHash(mintTxn.hash);
       setUploads((prev) => prev.filter((u) => u.id !== item.id));
     } catch (err: unknown) {
